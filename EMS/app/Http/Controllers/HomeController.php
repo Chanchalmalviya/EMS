@@ -25,9 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // $records =Employee::all();
-        $records = DB::table('employees')->get(); 
+     
+        $records = DB::table('employees')
+       ->select('employees.*','occupations.occupation as oname')
+       ->leftjoin('occupations','occupations.id','employees.occupation_id')
+       ->get();
         return view('home', ['records' => $records]);
-       // return view('home');
+      
     }
 }

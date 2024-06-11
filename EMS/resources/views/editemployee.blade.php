@@ -38,9 +38,13 @@
 
 			  <div class="form-group">
 			    <label for="text">Occupation:</label>
-			    <select name="occupation"  id ="occupation" value ="{{$record->occupation}}" class="form-control">
-			    	<option  value="Web Developer" >Web Developer</option>
-			    	<option value="Graphic Designer">Graphic Designer</option>
+			    <select name="occupation_id"  id ="occupation_id" value ="{{$record->occupation_id}}" class="form-control">
+			    	<option >Select</option>
+					@if(!empty($data))
+				    @foreach($data as $datas)
+			    	<option type="text" value="{{$datas->id}}" >{{$datas->occupation}} </option>
+					@endforeach
+				    @endif
 			    </select>
 			  </div>
 

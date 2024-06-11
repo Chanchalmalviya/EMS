@@ -49,15 +49,16 @@
 
 			  <div class="form-group">
 			    <label for="text">Occupation:</label>
-			    <select  name="occupation"  id ="occupation" class="form-control">
-			    	<option type="text" value="Select" >Select</option>
-			    	<option type="text" value="Web Developer" >Web Developer</option>
-			    	<option type="text" value="Graphic Designer" >Graphic Designer</option>
+				
+			    <select  name="occupation_id"  id ="occupation_id" class="form-control">
+				<option  >Select</option>
+				@if(!empty($data))
+				@foreach($data as $datas)
+			    	<option type="text" value="{{$datas->id}}" >{{$datas->occupation}}</option>
+				@endforeach
+				@endif
 			    </select>
-				@if($errors->has('occupation'))
-				    			<span class="text-danger">{{ $errors->first('occupation') }}
-                                </span>
-			    @endif
+				
 			  </div>
 
 			  <button type="submit" class="btn btn-default">Submit</button>

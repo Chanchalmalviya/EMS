@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;  
+use App\Models\Occupation; 
 use DB;                                                                              
 
 class EmployeeController extends Controller
@@ -11,7 +12,10 @@ class EmployeeController extends Controller
     
     public function addemployee()
     {
-        return view('addemployee');
+        $data = Occupation::get();
+        return view('addemployee',compact('data'));
+       
+       
     }
 
     public function employeeadd(Request $request)
@@ -21,7 +25,7 @@ class EmployeeController extends Controller
             'name'=> 'required',
             'image'=>'required|image|mimes:jpeg,png,jpg,svg|max:2048',
             'experience'=>'required',
-            'occupation'=>'required',
+            'occupation_id'=>'required',
             
         ]);
         //upload image 
@@ -33,9 +37,9 @@ class EmployeeController extends Controller
         $data->name = $request->name;
         $data->image = $imageName;
         $data->experience = $request->experience;
-        $data->occupation = $request->occupation;
+        $data->occupation_id = $request->occupation_id;
         $data->save();
-
+         
         return redirect('/home');
         
     }
@@ -55,7 +59,8 @@ class EmployeeController extends Controller
     public function editemployee($id){
 
         $record = Employee::find($id);
-        return view('editemployee',compact('record'));
+        $data = Occupation::get();
+        return view('editemployee',compact('record','data'));
 
     }
 
@@ -71,7 +76,7 @@ class EmployeeController extends Controller
         $record->name = $request->name;
         $record->image = $imageName;
         $record->experience = $request->experience;
-        $record->occupation = $request->occupation;
+        $record->occupation_id = $request->occupation_id;
         $record->save();
 
         return redirect('/home');

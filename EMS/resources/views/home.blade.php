@@ -32,7 +32,7 @@
 					<td>{{ $employee->name }}</td>
 					<td><img src ="{{ asset('employeeimage/'.$employee->image) }}"  alt="image"  width="60px" height="60px" class="img img-responsive"/></td>
 					<td>{{ $employee->experience }}</td>
-					<td>{{ $employee->occupation }}</td>
+					<td>{{ $employee->oname }}</td>
 					<td>
 						<a href="/editemployee/{{$employee->id}}" class="btn btn-success">Edit</a>
 						<a href="/deleteemployee/{{$employee->id}}" class="btn btn-danger">Delete</a>
